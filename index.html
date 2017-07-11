@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SOL Check in System</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1 class="title text-center"> SOL報到系統 </h1>
+    <form name="search" class="search">
+      <input type="text" name="searchID" placeholder="Type Student ID!">
+      <button id="search" type="submit" class="btn btn-search">Search</button>
+      <span class="flash-text"></span>
+    </form>
+
+    <div class="list">
+      <div class="list-item">
+        <ul>
+          <li class="id">ID</li>
+          <li class="name">姓名</li>
+          <li class="size">尺寸</li>
+          <li class="size">學院</li>
+          <li class="check">報到</li>
+          <li class="music">動畫</li>
+        </ul>
+      </div>
+      <div class="list-item"></div>
+    </div>
+  </div>
+  <script src="moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>
