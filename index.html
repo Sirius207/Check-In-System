@@ -16,7 +16,7 @@
   </div>
 
   <div class="container">
-    <h1 class="title text-center"> SOL報到系統 </h1>
+    <h1 class="title text-center"> SOL 報到系統 </h1>
     <form name="search" class="search text-center">
       <div>
         <input type="text" name="searchID" placeholder="Type Student ID!">
@@ -25,8 +25,8 @@
       <div class="flash-text"></div>
     </form>
     <div class="statstics text-center">
-      <!--<span id="checked">已報到：</span>
-      <span id="check" >未報到：</span>-->
+      <span id="checked" data-count=0>已報到：</span>
+      <span id="check" data-count=0>未報到：</span>
     </div>
     <br>
     <div class="list">
@@ -44,11 +44,11 @@
     </div>
   </div>
   <div class="animation">
-    <video width="100%" height="100%" controls>
+    <video width="100%" height="100%" controls id="A">
        <source src="A.mp4" type="video/mp4">
        Your browser does not support the video tag.
     </video>
-    <video width="100%" height="100%" controls>
+    <video width="100%" height="100%" controls id="B">
        <source src="B.mp4" type="video/mp4">
        Your browser does not support the video tag.
     </video>

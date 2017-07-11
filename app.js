@@ -1,11 +1,9 @@
 window.onload = init()
-const flashText = document.querySelector('.flash-text')
-
-function init() {
+function init () {
   if (!getData()) {
-    console.log('no')
+    console.log('init')
     fetchData()
-      .then(renderCheckStudents)
+    .then(renderCheckStudents)
   } else {
     console.log('get')
     renderCheckStudents()
@@ -37,7 +35,7 @@ function saveData(data) {
   })
 }
 
-function getData() {
+function getData () {
   let studentsData = localStorage.getItem('studentsData')
   if (!studentsData) return null
   studentsData = JSON.parse(studentsData)
@@ -47,80 +45,104 @@ function getData() {
 //
 // Render students info
 //
-function renderCheckStudents() {
-  const checkText = document.getElementById('check')
-  const checkedText = document.getElementById('checked')
+
+function renderCheckStudents () {
   const studentsData = getData()
   for (let ID in studentsData) {
     showCheckStudentData(ID, studentsData[ID])
   }
+  updateStatistics()
 }
 
-function showCheckStudentData(ID, data) {
+function showCheckStudentData (ID, data) {
   let dom = `
      <ul id="${ID}" class="${(data.check ? '' : 'hide')}">
-     <li class="id">${ID}</li>
-     <li class="name">${data.name}</li>
-     <li class="size">${data.size}</li>
-     <li class="size">${data.college}</li>
-     <li class="check">${(data.checkTime)?data.checkTime:'Not Yet'}</li>
-     <li class="animate">
-       <button data-type=${data.college} class="play">Play</button>
-     </li>
-</ul>
-`
+      <li class="id">${ID}</li>
+      <li class="name">${data.name}</li>
+      <li class="size">${data.size}</li>
+      <li class="size">${data.college}</li>
+      <li class="check">${(data.checkTime)?data.checkTime:'Not Yet'}</li>
+      <li class="animate">
+        <button data-type=${data.college} class="play">Play</button>
+      </li>
+    </ul>
+  `
+  const checkText = document.getElementById('check')
+  const checkedText = document.getElementById('checked')
   const list = document.querySelector('.list-item')
   if (!data.check) {
     list.innerHTML = dom + list.innerHTML
+    checkText.dataset.count++
   } else {
     list.innerHTML += dom
+    checkedText.dataset.count++
   }
 }
 
-function showCurrentStudentData(ID, data) {
-  if (data.check) {
-    flashText.innerHTML = '已報到'
-    return
+function updateStatistics () {
+  const checkText = document.getElementById('check')
+  const checkedText = document.getElementById('checked')
+  checkText.innerText = `未報到：${checkText.dataset.count}`
+  checkedText.innerText = `已報到：${checkedText.dataset.count}, `
+}
+
+//
+// Search Process
+//
+
+document.search.addEventListener('submit', searchStudent)
+
+function searchStudent (e) {
+  e.preventDefault()
+  const data = getData()
+  const studentID = document.search.searchID.value.toUpperCase()
+  if (data[studentID]) {
+    showCurrentStudentData(studentID, data[studentID])
+  } else {
+    const flashText = document.querySelector('.flash-text')
+    flashText.innerText = '查無此學號'
   }
-  const student = document.querySelector(`#${ID}`)
-  student.querySelector('.check').innerHTML = `<button data-id=${ID} class="checkIn">Check</button>`
-  const checkInButton = document.querySelector('.checkIn')
-  checkInButton.addEventListener('click', checkIn)
-  student.classList.remove('hide')
+}
+
+function showCurrentStudentData (ID, data) {
+  const flashText = document.querySelector('.flash-text')
+  if (data.check) {
+    flashText.innerText = '此學員已報到'
+  } else {
+    flashText.innerText = ''
+    const student = document.querySelector(`#${ID}`)
+    student.querySelector('.check').innerHTML = `<button data-id=${ID} class="checkIn">Check</button>`
+    const checkInButton = document.querySelector('.checkIn')
+    checkInButton.addEventListener('click', checkIn)
+    student.classList.remove('hide')
+  }
 }
 
 //
 // Check In Process
 //
 
-document.search.addEventListener('submit', searchStudent)
-
-function searchStudent(e) {
-  e.preventDefault()
-  const data = getData()
-  const studentID = document.search.searchID.value
-  if (data[studentID]) {
-    showCurrentStudentData(studentID, data[studentID])
-    flashText.innerHTML = ''
-  } else {
-    flashText.innerHTML = '查無此學號'
-  }
-}
-
-function checkIn() {
+function checkIn () {
+  const checkText = document.getElementById('check')
+  const checkedText = document.getElementById('checked')
   showNewBlock(this)
     .then(function (data) {
       saveData(data)
     }).then(function () {
       const audio = new Audio('checkIn.wav')
       audio.play()
+    }).then(function () {
+      checkText.dataset.count--
+      checkedText.dataset.count++
+      checkText.innerText = `未報到：${checkText.dataset.count}`
+      checkedText.innerText = `已報到：${checkedText.dataset.count}, `
     })
     .catch(function (err) {
       console.log(err)
     })
 }
 
-function showNewBlock(button) {
+function showNewBlock (button) {
   return new Promise(function (resolve, reject) {
     const ID = button.dataset.id
     const data = getData()
@@ -141,20 +163,33 @@ playButtons.forEach((playButton) => {
   playButton.addEventListener('click', play)
 })
 
-function play() {
-  console.log(this.dataset.type)
+function play () {
+  const animationTable = {
+    'apple': 'A',
+    'orange': 'B'
+  }
   videoBlock.classList.add('active')
-  videoBlock.children[0].style.display = 'block'
-  videoBlock.children[0].play()
+  const video = document.getElementById(animationTable[this.dataset.type])
+  video.style.display = 'block'
+  video.classList.add('playing')
+  video.play()
 }
+
+//
+// hide screen
+//
+
 const hideButtons = document.querySelectorAll('.hide-button')
 hideButtons.forEach((hideButton) => {
   hideButton.addEventListener('click', hide)
 })
 
-function hide() {
-  videoBlock.children[0].style.display = 'none'
-  videoBlock.children[0].pause()
+function hide () {
+  console.log(this.dataset.type)
+  const video = document.querySelector('.playing')
+  video.style.display = 'none'
+  video.classList.remove('playing')
+  video.pause()
   videoBlock.classList.remove('active')
 }
 
@@ -165,23 +200,27 @@ function hide() {
 const resetBtn = document.querySelector('.reset')
 resetBtn.addEventListener('click', reset)
 
-function reset() {
+function reset () {
   localStorage.removeItem('studentsData')
   window.location.reload()
 }
 
 //
-// Show not check Students
+// Toggle not check Students
 //
 
 const showBtn = document.querySelector('.show-button')
 showBtn.addEventListener('click', showAllStudents)
 function showAllStudents () {
   let students = document.querySelectorAll('.hide')
-  if (!students.length) students = document.querySelectorAll('.temp-show')
-  students.forEach( student => {
+  if (!students.length) {
+    students = document.querySelectorAll('.temp-show')
+    this.innerHTML = 'Show All'
+  } else {
+    this.innerHTML = 'Hide'
+  }
+  students.forEach(student => {
     student.classList.toggle('temp-show')
     student.classList.toggle('hide')
   })
-  this.innerHTML = 'Hide'
 }

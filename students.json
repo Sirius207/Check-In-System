@@ -2,20 +2,20 @@
   "F44026149": {
     "name": "Johnson",
     "size": "M",
-    "college": "J",
+    "college": "apple",
     "check": 1,
-    "checkTime": "07-11, 1:54 pm"
+    "checkTime": "07/11, 1:54 pm"
   },
   "F44026148": {
     "name": "John",
     "size": "M",
-    "college": "J",
+    "college": "orange",
     "check": 0
   },
    "F44026147": {
     "name": "Jason",
     "size": "M",
-    "college": "J",
+    "college": "apple",
     "check": 0
   }
 }
