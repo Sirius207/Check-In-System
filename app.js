@@ -115,6 +115,8 @@ function showCurrentStudentData (ID, data) {
     const checkInButton = document.querySelector('.checkIn')
     checkInButton.addEventListener('click', checkIn)
     student.classList.remove('hide')
+    // temp
+    student.classList.add('current')
   }
 }
 
@@ -185,12 +187,14 @@ hideButtons.forEach((hideButton) => {
 })
 
 function hide () {
-  console.log(this.dataset.type)
   const video = document.querySelector('.playing')
   video.style.display = 'none'
   video.classList.remove('playing')
   video.pause()
   videoBlock.classList.remove('active')
+  // temp
+  document.querySelector('.current').classList.add('hide')
+  document.querySelector('.current').classList.remove('current')
 }
 
 //
@@ -209,18 +213,18 @@ function reset () {
 // Toggle not check Students
 //
 
-const showBtn = document.querySelector('.show-button')
-showBtn.addEventListener('click', showAllStudents)
-function showAllStudents () {
-  let students = document.querySelectorAll('.hide')
-  if (!students.length) {
-    students = document.querySelectorAll('.temp-show')
-    this.innerHTML = 'Show All'
-  } else {
-    this.innerHTML = 'Hide'
-  }
-  students.forEach(student => {
-    student.classList.toggle('temp-show')
-    student.classList.toggle('hide')
-  })
-}
+// const showBtn = document.querySelector('.show-button')
+// showBtn.addEventListener('click', showAllStudents)
+// function showAllStudents () {
+//   let students = document.querySelectorAll('.hide')
+//   if (!students.length) {
+//     students = document.querySelectorAll('.temp-show')
+//     this.innerHTML = 'Show All'
+//   } else {
+//     this.innerHTML = 'Hide'
+//   }
+//   students.forEach(student => {
+//     student.classList.toggle('temp-show')
+//     student.classList.toggle('hide')
+//   })
+// }

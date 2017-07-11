@@ -141,11 +141,12 @@ input {
   transition: 0.3s;
 }
 
-.list-item ul.hide {
+.list-item ul.hide , .list-item ul.checked {
   position: absolute;
   transform: translateY(-100%);
   opacity: 0;
   z-index: 0;
+  pointer-events: none;
 }
 
 .list-item ul {
