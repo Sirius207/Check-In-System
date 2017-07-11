@@ -10,16 +10,27 @@
 </head>
 
 <body>
+  <div class="function-menu">
+    <button class="reset">Reset</button>
+    <button class="show-button">Show All</button>
+  </div>
+
   <div class="container">
     <h1 class="title text-center"> SOL報到系統 </h1>
-    <form name="search" class="search">
-      <input type="text" name="searchID" placeholder="Type Student ID!">
-      <button id="search" type="submit" class="btn btn-search">Search</button>
-      <span class="flash-text"></span>
+    <form name="search" class="search text-center">
+      <div>
+        <input type="text" name="searchID" placeholder="Type Student ID!">
+        <button id="search" type="submit" class="btn btn-search">Search</button>
+      </div>
+      <div class="flash-text"></div>
     </form>
-
+    <div class="statstics text-center">
+      <!--<span id="checked">已報到：</span>
+      <span id="check" >未報到：</span>-->
+    </div>
+    <br>
     <div class="list">
-      <div class="list-item">
+      <div class="list-head">
         <ul>
           <li class="id">ID</li>
           <li class="name">姓名</li>
@@ -31,6 +42,17 @@
       </div>
       <div class="list-item"></div>
     </div>
+  </div>
+  <div class="animation">
+    <video width="100%" height="100%" controls>
+       <source src="A.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video>
+    <video width="100%" height="100%" controls>
+       <source src="B.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video>
+    <button class="hide-button">X</button>
   </div>
   <script src="moment.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.min.js"></script>
