@@ -38,7 +38,7 @@ function fetchData() {
     const dataUrl = 'students.json'
     axios.get(dataUrl)
       .then((rawData) => {
-        resolve(saveData(rawData))
+        resolve(saveData(rawData.data))
       })
       .catch((error) => {
         reject(error)
@@ -48,16 +48,17 @@ function fetchData() {
 
 function saveData(data) {
   return new Promise(function (resolve, reject) {
+    console.log('save')
     localStorage.setItem('studentsData', JSON.stringify(data))
     resolve()
   })
 }
 
-function getData() {
+function getData () {
   let studentsData = localStorage.getItem('studentsData')
   if (!studentsData) return null
   studentsData = JSON.parse(studentsData)
-  return studentsData.data
+  return studentsData
 }
 
 function showCheckStudentData (ID, data) {
@@ -83,6 +84,7 @@ function showCheckStudentData (ID, data) {
 
 function showCurrentStudentData (ID, data) {
   if (data.check) {
+    flashText.innerHTML = '已報到'
     return
   }
   const student = document.querySelector(`#${ID}`)
