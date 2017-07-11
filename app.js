@@ -55,8 +55,9 @@ function renderCheckStudents () {
 }
 
 function showCheckStudentData (ID, data) {
+  // temp ${(data.check ? '' : 'hide')}
   let dom = `
-     <ul id="${ID}" class="${(data.check ? '' : 'hide')}">
+     <ul id="${ID}" class="hide">
       <li class="id">${ID}</li>
       <li class="name">${data.name}</li>
       <li class="size">${data.size}</li>
@@ -148,7 +149,7 @@ function showNewBlock (button) {
   return new Promise(function (resolve, reject) {
     const ID = button.dataset.id
     const data = getData()
-    data[ID].check = 1
+    // data[ID].check = 1
     data[ID].checkTime = moment(Date.now()).utcOffset(8).format('MM/DD, h:mm a')
     button.parentNode.innerHTML = data[ID].checkTime
     resolve(data)
@@ -170,6 +171,7 @@ function play () {
     'apple': 'A',
     'orange': 'B'
   }
+  console.log('play')
   videoBlock.classList.add('active')
   const video = document.getElementById(animationTable[this.dataset.type])
   video.style.display = 'block'
