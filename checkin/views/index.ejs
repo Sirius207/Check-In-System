@@ -1,0 +1,45 @@
+<%- include head.ejs %>
+<body>
+  <div class="function-menu">
+    <button class="reset">Reset</button>
+  </div>
+  <div class="container">
+    <h1 class="title text-center"> SOL 報到系統 </h1>
+    <form name="search" class="search text-center">
+      <div>
+        <input type="text" name="searchID" placeholder="Type Student ID!">
+        <button id="search" type="submit" class="btn btn-search">Search</button>
+      </div>
+      <div class="flash-text"></div>
+    </form>
+    <div class="statstics text-center">
+      <span id="checked" data-count=0>已報到：</span>
+      <span id="check" data-count=0>未報到：</span>
+    </div>
+    <br>
+    <div class="list">
+      <div class="list-head">
+        <ul>
+          <li class="id">ID</li>
+          <li class="name">姓名</li>
+          <li class="size">尺寸</li>
+          <li class="size">學院</li>
+          <li class="check">報到</li>
+          <li class="music">動畫</li>
+        </ul>
+      </div>
+      <div class="list-item"></div>
+    </div>
+  </div>
+  <div class="animation">
+    <video width="100%" height="100%" controls id="A">
+       <source src="assets/A.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video>
+    <video width="100%" height="100%" controls id="B">
+       <source src="assets/B.mp4" type="video/mp4">
+       Your browser does not support the video tag.
+    </video>
+    <button class="hide-button">X</button>
+  </div>
+  <%- include footer.ejs %>
