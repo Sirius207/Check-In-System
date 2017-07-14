@@ -33,7 +33,7 @@ function renderStudents (users) {
 function checkStatistics (user) {
   console.log(user)
   let dom = `
-     <ul id="${user.user_id}">
+     <ul id="${user.user_id}" class=${user.condition ? '' : 'temp-show'}>
       <li class="id">${user.user_id}</li>
       <li class="name">${user.name}</li>
       <li class="size">${user.size}</li>
