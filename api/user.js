@@ -7,35 +7,33 @@ const mongoose = init.mongoose
 const checkInUser = mongoose.model('checkInUser')
 const moment = init.moment
 
+const students = require('../students.json')
+
 /***************************************************************
  *  Users List
  ****************************************************************/
 
-function userPost (req, res, next) {
-  new checkInUser({
-    user_id: 'F44026148',
-    name: 'John',
-    size: 'M',
-    college: 'A',
-    condition: 0,
-    checkedTime: '0',
-    createdAt: '07/11, 1:54 pm'
-  }).save(function (err) {
-    if (err) {
-      console.log(err);
-      var json = {
-        'status': '500',
-        'err': err
+function userPost(req, res, next) {
+  students.forEach(student => {
+    new checkInUser(student).save(function (err) {
+      if (err) {
+        console.log(err);
+        var json = {
+          'status': '500',
+          'err': err
+        }
+      } else {
+        console.log('save to db')
+        var json = {
+          'status': '200'
+        }
       }
-      next(json)
-    } else {
-      console.log('save to db')
-      var json = {
-        'status': '200'
-      }
-      next(json)
-    }
+    })
   })
+  let json = {
+    'status': 200
+  }
+  next(json)
 }
 
 function usersQuery(req, res, next) {

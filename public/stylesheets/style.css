@@ -223,3 +223,9 @@ input {
   border: 1px solid gray;
   border-radius: 50%;
 }
+
+@media screen and (max-width: 600px) {
+  .list-head ul, .list-item ul {
+    display: block;
+  }
+}
