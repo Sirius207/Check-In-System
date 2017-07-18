@@ -76,6 +76,9 @@ function userPut(req, res, next) {
       next(json)
     } else {
       user.condition = 1
+      if (req.body.reset) {
+        user.condition = 0
+      }
       user.checkedTime = moment(Date.now()).utcOffset(8).format('MM/DD, h:mm a')
       user.updatedAt = moment(Date.now()).utcOffset(8).format('MM/DD, h:mm a')
       user.save(function (err, newUser) {

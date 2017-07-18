@@ -61,3 +61,57 @@ function updateStatistics () {
   checkText.innerText = `未報到：${checkText.dataset.count}`
   checkedText.innerText = `已報到：${checkedText.dataset.count}, `
 }
+
+//
+// Play Animation
+//
+
+document.querySelector('.list-item').addEventListener('click', function (e) {
+  if (e.target && e.target.className === 'play') {
+    play(e.target)
+  }
+})
+
+const videoBlock = document.querySelector('.animation')
+function play (button) {
+  const animationTable = {
+    '米斯提爾': 'A',
+    '奧莉薇雅': 'B',
+    '梅里雷特': 'A',
+    '噩斯邦迪': 'B'
+  }
+  console.log('play')
+  videoBlock.classList.add('active')
+  const video = document.getElementById(animationTable[button.dataset.type])
+  video.style.display = 'block'
+  video.classList.add('playing')
+  video.play()
+}
+
+//
+// hide screen
+//
+
+const hideButtons = document.querySelectorAll('.hide-button')
+hideButtons.forEach((hideButton) => {
+  hideButton.addEventListener('click', hide)
+})
+
+function hide () {
+  const video = document.querySelector('.playing')
+  video.style.display = 'none'
+  video.classList.remove('playing')
+  video.pause()
+  videoBlock.classList.remove('active')
+  document.querySelector('.current').classList.add('hide')
+  document.querySelector('.current').classList.remove('current')
+}
+
+// reset
+const reset = document.querySelector('.reset')
+reset.addEventListener('click', function () {
+  const dataUrl = `/apis/reset`
+  axios.put(dataUrl).then(function(){
+    history.go(0)
+  })
+})

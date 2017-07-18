@@ -96,19 +96,14 @@ function showCurrentStudentData(ID, data) {
       </li>
     </ul>
   `
-    const checkText = document.getElementById('check')
-    const checkedText = document.getElementById('checked')
     const list = document.querySelector('.list-item')
     if (!data.check) {
       list.innerHTML = dom + list.innerHTML
-      checkText.dataset.count++
     } else {
       list.innerHTML += dom
-      checkedText.dataset.count++
     }
   }
 }
-
 
 //
 // Check In Process
@@ -198,3 +193,12 @@ function hide () {
   document.querySelector('.current').classList.add('hide')
   document.querySelector('.current').classList.remove('current')
 }
+
+// reset
+const reset = document.querySelector('.reset')
+reset.addEventListener('click', function () {
+  const dataUrl = `/apis/reset`
+  axios.put(dataUrl).then(function(){
+    history.go(0)
+  })
+})
