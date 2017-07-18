@@ -15,6 +15,11 @@ body {
   background: linear-gradient(-20deg, cyan, #fff)
 }
 
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
 audio, video {
   display: none;
 }
