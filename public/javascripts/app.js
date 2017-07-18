@@ -167,8 +167,10 @@ document.querySelector('.list-item').addEventListener('click', function (e) {
 const videoBlock = document.querySelector('.animation')
 function play (button) {
   const animationTable = {
-    'apple': 'A',
-    'orange': 'B'
+    '米斯提爾': 'A',
+    '奧莉薇雅': 'B',
+    '梅里雷特': 'A',
+    '噩斯邦迪': 'B'
   }
   console.log('play')
   videoBlock.classList.add('active')
