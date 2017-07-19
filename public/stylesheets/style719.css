@@ -20,7 +20,8 @@ a {
   color: #fff;
 }
 
-audio, video {
+audio,
+video {
   display: none;
 }
 
@@ -33,7 +34,7 @@ button {
 }
 
 .temp-show {
-  background-color: rgba(0,0,0,0.2);
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .btn {
@@ -146,7 +147,8 @@ input {
   transition: 0.3s;
 }
 
-.list-item ul.hide , .list-item ul.checked {
+.list-item ul.hide,
+.list-item ul.checked {
   position: absolute;
   transform: translateY(-100%);
   opacity: 0;
@@ -180,12 +182,27 @@ input {
 }
 
 .list-item button:hover {
-  color: rgba(0,0,0,0.8);
+  color: rgba(0, 0, 0, 0.8);
   background-color: #fff;
   font-weight: 300;
   transform: scale(1.1);
 }
 
+.check {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(200%);
+}
+
+.check button {
+  height: 36px;
+  width: 120px;
+  border-radius: 50px;
+  font-size: 20px;
+  background: #0fec31;
+}
 
 /*
  * Animation
@@ -204,14 +221,14 @@ input {
   background-color: #fff;
   pointer-events: none;
   transition: .3s;
-  transform: scale(0.8,0.7) translate(0, -50px);
+  transform: scale(0.8, 0.7) translate(0, -50px);
   z-index: 10;
 }
 
 .animation.active {
   opacity: 1;
   pointer-events: auto;
-  transform: scale(1,1) translate(0,0)
+  transform: scale(1, 1) translate(0, 0)
 }
 
 .hide-button {
@@ -226,7 +243,8 @@ input {
 }
 
 @media screen and (max-width: 600px) {
-  .list-head ul, .list-item ul {
+  .list-head ul,
+  .list-item ul {
     display: block;
   }
 }

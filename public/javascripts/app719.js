@@ -174,6 +174,7 @@ function play (button) {
   video.style.display = 'block'
   video.classList.add('playing')
   video.play()
+  video.addEventListener('ended', hide, false)
 }
 
 //
