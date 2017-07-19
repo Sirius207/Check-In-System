@@ -3,7 +3,7 @@ const router = express.Router()
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-  res.render('index', {js: 'app'})
+  res.render('index', {js: 'app719'})
 })
 
 router.get('/admin', function (req, res, next) {

@@ -81,7 +81,7 @@ function showCurrentStudentData(ID, data) {
   if (data.condition) {
     flashText.innerText = '此學員已報到'
   } else {
-    flashText.innerText = ''
+    flashText.innerText = '點擊check進行報到'
     let dom = `
      <ul id="${ID}" class = 'current'>
       <li class="id">${ID}</li>
@@ -89,10 +89,7 @@ function showCurrentStudentData(ID, data) {
       <li class="size">${data.size}</li>
       <li class="size">${data.college}</li>
       <li class="check">
-        <button data-id=${data._id} class="checkIn">Check</button>
-      </li>
-      <li class="animate">
-        <button data-type=${data.college} class="play">Play</button>
+        <button data-id=${data._id} data-type=${data.college} class="checkIn">Check</button>
       </li>
     </ul>
   `
@@ -116,6 +113,7 @@ document.querySelector('.list-item').addEventListener('click', function (e) {
 })
 
 function checkIn (button) {
+  const flashText = document.querySelector('.flash-text')
   const checkText = document.getElementById('check')
   const checkedText = document.getElementById('checked')
   showNewBlock(button)
@@ -127,6 +125,9 @@ function checkIn (button) {
       checkedText.dataset.count++
       checkText.innerText = `未報到：${checkText.dataset.count}`
       checkedText.innerText = `已報到：${checkedText.dataset.count}, `
+    }).then(function () {
+      play(button)
+      flashText.innerText = '請輸入身分證字號進行報到'
     })
     .catch(function (err) {
       console.log(err)
