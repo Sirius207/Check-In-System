@@ -12,7 +12,8 @@
 
 body {
   min-height: 100vh;
-  background: linear-gradient(-20deg, cyan, #fff)
+  /* background: linear-gradient(-20deg, cyan, #fff) */
+  background: url(http://i.imgur.com/TZ4FXeD.png);
 }
 
 a {
@@ -31,6 +32,10 @@ button {
 
 .text-center {
   text-align: center;
+}
+
+.text-white {
+  color: rgba(255,255,255,0.95);
 }
 
 .temp-show {
@@ -71,7 +76,6 @@ button {
 .function-menu button {
   padding: 10px;
   background-color: transparent;
-  color: rgba(0, 0, 0, 0.8);
   border: 0;
   transition: .3s;
 }
@@ -109,7 +113,7 @@ input {
 .flash-text {
   height: 30px;
   margin: 10px;
-  color: rgb(181, 28, 28);
+  color: rgb(255, 75, 75); /*rgb(181, 28, 28);*/
   font-family: monospace;
   font-size: 20px;
 }
