@@ -54,12 +54,17 @@ document.search.addEventListener('submit', searchStudent)
 
 function searchStudent (e) {
   e.preventDefault()
+  const flashText = document.querySelector('.flash-text')
   const studentID = document.search.searchID.value.toUpperCase()
+  const currentStudent = document.querySelector('.current')
+  if (currentStudent && currentStudent.id === studentID) {
+    flashText.innerText = '請先點擊check進行報到'
+    return
+  }
   getData(studentID, function (data) {
     if (data.status === '200') {
       showCurrentStudentData(studentID, data.users[0])
-    } else {
-      const flashText = document.querySelector('.flash-text')
+    } else {  
       flashText.innerText = '查無此學號'
     }
   })
