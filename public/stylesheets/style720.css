@@ -71,6 +71,7 @@ button {
 
 .function-menu {
   display: flex;
+  min-height: 35px;
 }
 
 .function-menu button {

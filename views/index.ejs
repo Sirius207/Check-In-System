@@ -1,7 +1,9 @@
 <%- include head.ejs %>
 <body>
   <div class="function-menu">
-    <button class="reset text-white">Reset</button>
+    <%if ( js == 'admin720') { %>
+      <button class="reset text-white">Reset</button>
+    <% } %>
   </div>
   <div class="container">
     <h1 class="title text-center"> <a href="/">SOL 報到系統</a></h1>
