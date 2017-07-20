@@ -199,6 +199,7 @@ function hide () {
   videoBlock.classList.remove('active')
   document.querySelector('.current').classList.add('hide')
   document.querySelector('.current').classList.remove('current')
+  document.search.searchID.value = ''
 }
 
 // reset
