@@ -86,7 +86,7 @@ function showCurrentStudentData(ID, data) {
   if (data.condition) {
     flashText.innerText = '此學員已報到'
   } else {
-    flashText.innerText = '點擊check進行報到'
+    flashText.innerText = `您的學院為${data.college}，衣服尺寸為${data.size}，請記住以上資訊，點擊check進行報到後前往下一站。`
     let dom = `
      <ul id="${ID}" class = 'current'>
       <li class="id">${ID}</li>
