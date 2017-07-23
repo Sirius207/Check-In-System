@@ -123,8 +123,8 @@ function checkIn (button) {
   const checkedText = document.getElementById('checked')
   showNewBlock(button)
     .then(function () {
-      const audio = new Audio('assets/checkIn.wav')
-      audio.play()
+      // const audio = new Audio('assets/checkIn.wav')
+      // audio.play()
     }).then(function () {
       checkText.dataset.count--
       checkedText.dataset.count++
