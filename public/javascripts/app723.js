@@ -168,10 +168,10 @@ document.querySelector('.list-item').addEventListener('click', function (e) {
 const videoBlock = document.querySelector('.animation')
 function play (button) {
   const animationTable = {
-    '米斯提爾': 'A',
-    '奧莉薇雅': 'B',
-    '梅里雷特': 'A',
-    '噩斯邦迪': 'B'
+    '米斯提爾': 'Mis',
+    '奧莉薇雅': 'Ori',
+    '梅里雷特': 'Merry',
+    '噩斯邦迪': 'Earth'
   }
   console.log('play')
   videoBlock.classList.add('active')
@@ -202,11 +202,3 @@ function hide () {
   document.search.searchID.value = ''
 }
 
-// reset
-const reset = document.querySelector('.reset')
-reset.addEventListener('click', function () {
-  const dataUrl = `/apis/reset`
-  axios.put(dataUrl).then(function(){
-    history.go(0)
-  })
-})
